@@ -425,19 +425,6 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
     </div>
   </div></section>
 
-  <!-- ====== 06 LIVE MANDATE BOARD ====== -->
-  <section id="board"><div class="reveal">
-    <div class="shead">
-      <h2><span class="num">06</span>Live mandate board</h2>
-      <p class="desc">The highest-conviction mandates the engine has surfaced in the window, each with the advisory angle and the window still open. This is the output layer — not a signal, but the mandate it points to.</p>
-    </div>
-    <div class="feed" id="feed"></div>
-    <div class="insight"><div class="ik">The StrategyAI read</div>
-      <p>Every card began as a raw signal and was promoted because the engine read a forming mandate behind it — a PE hold past its exit window, a cross-border deal that will need integration, a roll-up that has to be made one business. <b>The confidence score is the engine's own conviction</b>, and the angle is the work it sees forming. The window is typically 3–6 months from the signal — the partner who arrives early, with a credible point of view, wins the mandate before it is competitively shopped.</p>
-    </div>
-  </div></section>
-
-
 </div>
 
 <div class="disclaimer"><div class="wrap"><div class="method">StrategyAI Mandate Lens · live 30-day signal window to <span id="methAsof">31 May 2026</span> · <span id="methSignals">10,388</span> raw signals scanned, <span id="methMandates">703</span> promoted to scored mandates. Signal streams, confidence scores and mandate angles are model-derived and indicative, not advice. Mandate Lens reads the <b>signal flow</b> upstream of the market; its sibling, Deal Insights, reads completed EMEA M&amp;A transactions over six months — different data, different lens, same engine.</div></div></div>
@@ -712,7 +699,7 @@ function renderTypeList(){
   row.innerHTML=`<span class="rk">${String(i+1).padStart(2,'0')}</span><span class="nm">${d.n} <span class="tag">avg conf ${d.conf}/100</span></span><span class="ct">${d.c} mandates</span><span class="vl">${Math.round(d.c/tot*100)}%</span>`;wrap.appendChild(row);});
 }
 function renderFeed(){
- const wrap=document.getElementById('feed');clear(wrap);
+ const wrap=document.getElementById('feed');if(!wrap)return;clear(wrap);
  const lockSvg=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>`;
  SIGNALS.forEach((d,i)=>{const locked=i>=3;
   const c=document.createElement('div');c.className='deal'+(locked?' locked':'');
@@ -747,7 +734,7 @@ function renderText(){
 function renderAll(first){
  renderTicker();renderHeat();renderIntake();renderTape();renderConf();renderBubble();renderFunnel();
  renderDonut('srcdonut','srclegend',SRCTIER,'SIGNALS');renderDonut('geodonut','geolegend',REGION,'MANDATES');
- renderSectors();renderTypeList();renderFeed();renderKpis(first);renderText();
+ renderSectors();renderTypeList();renderKpis(first);renderText();
 }
 
 /* ============ live fetch + mapping ============ */
