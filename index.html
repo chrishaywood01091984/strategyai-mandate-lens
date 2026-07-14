@@ -767,7 +767,7 @@ function applyData(d){
 }
 async function load(first){
  try{
-  const r=await fetch(SUPA_URL+'/rest/v1/rpc/ml_dashboard',{method:'POST',headers:{apikey:SUPA_KEY,'Content-Type':'application/json'},body:'{}'});
+  const r=await fetch(SUPA_URL+'/rest/v1/rpc/ml_dashboard_cached',{method:'POST',headers:{apikey:SUPA_KEY,'Content-Type':'application/json'},body:'{}'});
   if(!r.ok)throw 0;
   applyData(await r.json());
   const ls=document.getElementById('liveStamp');if(ls){ls.className='livestamp';ls.textContent='live';}
